@@ -122,5 +122,17 @@ const deleteAll = (req,res,next) => {
     })
   })
 }
+const deleteCompleted = (req,res,next) => {
+  Todo.deleteMany({'completed' : true}).then((result) => {
+    console.log("deleted records : ",result);
+    getList(req,res,next);
+  }).catch((error)=>{
+    console.log("error : ",error);
+    res.send({
+      status : false,
+      error : error
+    })
+  })
+}
 
-module.exports = { getList, getTodo, create, updateTodo, singleDelete , deleteAll };
+module.exports = { getList, getTodo, create, updateTodo, singleDelete , deleteAll, deleteCompleted };
