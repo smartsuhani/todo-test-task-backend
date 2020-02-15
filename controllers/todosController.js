@@ -39,10 +39,11 @@ const create = (req, res) => {
   let order = null;
   Todo.find({},{order:1, _id:0}).sort({order:-1}).limit(1).then((result)=>{
     order =  Object.keys(result).length ? result[0].order + 1 : 1;
+    let baseUrl = process.env.baseUrl || "http://localhost:5000/";
     const todo = new Todo({
       _id : id,
       title: req.body.title,
-      url : "http://localhost:5000/todo/"+id,
+      url : baseUrl+"todo/"+id,
       order : order
     });
     let todoData = todo.save().then((data) => {
