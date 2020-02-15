@@ -19,6 +19,18 @@ const getList = (req, res) => {
   });
 };
 
+const getTodo = (req,res,next) => {
+  todoId = req.params.todo;
+  Todo.findById(todoId).then((result)=>{
+    res.send(result)
+  }).catch((error)=>{
+    res.send({
+      status : false,
+      error : error
+    })
+  })
+}
+
 const create = (req, res) => {
   console.log("req :",req.body);
   let id = new mongoose.Types.ObjectId;
@@ -40,4 +52,14 @@ const create = (req, res) => {
 
 };
 
-module.exports = { getList, create};
+const deleteAll = (req,res,next) => {
+  Todo.deleteMany({}).then(()=> {
+    res.send();
+  }).catch((error)=>{
+    res.send({
+      status : false,
+      error : error
+    })
+  })
+}
+module.exports = { getList, create, deleteAll, getTodo};
