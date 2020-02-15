@@ -13,6 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/todo', todoRouter);
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log('Server is Running on 5000');
 });
