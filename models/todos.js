@@ -8,6 +8,12 @@ const TodoSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  order : {
+    type : Number
+  },
+  url: {
+    type: String,
+  },
   isDelete: {
     type: Boolean,
     default: false,
